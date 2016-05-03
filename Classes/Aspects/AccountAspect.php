@@ -8,7 +8,7 @@ use TYPO3\Flow\Security\Account;
 use TYPO3\SwiftMailer\Message;
 
 /**
- * Advice the RuntimeContentCache to check for uncached segments that should prevent caching
+ * Advice the Account to deactivate if failed attempts threshold is exceeded
  *
  * @Flow\Aspect
  * @Flow\Scope("singleton")
@@ -57,14 +57,18 @@ class AccountAspect {
         }
         $httpRequest = Request::createFromEnvironment();
         $failedAttemptsThreshold = $this->settings['failedAttemptsThreshold'];
-        $replacePlaceholders = function ($string) use ($account, $httpRequest, $failedAttemptsThreshold) {
+        $time = (new \DateTime())->format('Y-m-d H:i');
+
+        $replacePlaceholders = function ($string) use ($account, $httpRequest, $failedAttemptsThreshold, $time) {
             return str_replace([
-                '{domain}', '{ip}', '{accountIdentifier}', '{failedAttemptsThreshold}'
+                '{domain}', '{ip}', '{userAgent}', '{accountIdentifier}', '{failedAttemptsThreshold}', '{time}'
             ], [
                 $httpRequest->getUri()->getHost(),
                 $httpRequest->getClientIpAddress(),
+                $_SERVER['HTTP_USER_AGENT'],
                 $account->getAccountIdentifier(),
-                $failedAttemptsThreshold
+                $failedAttemptsThreshold,
+                $time
             ], $string);
         };
 
