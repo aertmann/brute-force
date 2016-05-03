@@ -13,6 +13,8 @@ A notification email can be send to an administrator when an account has been lo
 
 Compatible with Neos 2.x + / Flow 3.x+
 
+Be aware that there are ways to circumvent this protection and it can be misused, see [Blocking Brute Force Attacks](https://www.owasp.org/index.php/Blocking_Brute_Force_Attacks) for more information.
+
 ## Installation
 
 `composer require "aertmann/brute-foce:~1.0"`
