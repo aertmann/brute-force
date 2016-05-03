@@ -1,0 +1,22 @@
+{
+	"name": "aertmann/brute-force",
+	"type": "typo3-flow-package",
+	"license": "MIT",
+	"description": "Simple brute-force prevention (account locking) for Flow",
+	"keywords": [ "brute-force", "security", "neos", "flow" ],
+	"authors": [
+		{
+			"name": "Aske Ertmann",
+			"email": "aske@ertmann.co"
+		}
+	],
+	"require": {
+		"typo3/flow": "~3.0",
+		"typo3/swiftmailer": "~5.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"AE\\BruteForce\\": "Classes"
+		}
+	}
+}
