@@ -8,9 +8,7 @@ AE:
       from:
         email: 'noreply@{domain}'
         name: 'Brute-force prevention - {domain}'
-      to:
-        email: '' # Optional
-        name: '' # Optional
+      to: # String or array of recipients (optional)
       subject: 'Account disabled due to failed login attempts - {domain}'
       message: |
         The account "{accountIdentifier}" has been deactivated at {time} on "{domain}" due to exceeding failed login attempts limit ({failedAttemptsThreshold})

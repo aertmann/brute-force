@@ -52,14 +52,14 @@ class AccountAspect {
     protected function sendNotificationMail(Account $account)
     {
         $notificationMailSettings = $this->settings['notificationMail'];
-        if (!$notificationMailSettings['to']['email']) {
+        if (!$notificationMailSettings['to']) {
             return;
         }
         $httpRequest = Request::createFromEnvironment();
         $failedAttemptsThreshold = $this->settings['failedAttemptsThreshold'];
         $time = (new \DateTime())->format('Y-m-d H:i');
 
-        $replacePlaceholders = function ($string) use ($account, $httpRequest, $failedAttemptsThreshold, $time) {
+        $replacePlaceholders = function($string) use ($account, $httpRequest, $failedAttemptsThreshold, $time) {
             return str_replace([
                 '{domain}', '{ip}', '{userAgent}', '{accountIdentifier}', '{failedAttemptsThreshold}', '{time}'
             ], [
@@ -78,10 +78,7 @@ class AccountAspect {
                 $notificationMailSettings['from']['email'],
                 $replacePlaceholders($notificationMailSettings['from']['name'])
             )
-            ->setTo(
-                $notificationMailSettings['to']['email'],
-                $replacePlaceholders($notificationMailSettings['to']['name'])
-            )
+            ->setTo($notificationMailSettings['to'])
             ->setSubject($replacePlaceholders($notificationMailSettings['subject']))
             ->setBody($replacePlaceholders($notificationMailSettings['message']))
             ->send();
