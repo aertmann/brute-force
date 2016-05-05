@@ -1,8 +1,8 @@
 # AE.BruteForce
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aertmann/brute-force/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aertmann/brute-force/?branch=master)
-[![Latest Stable Version](https://poser.pugx.org/moc/varnish/v/stable)](https://packagist.org/packages/aertmann/brute-force)
-[![Total Downloads](https://poser.pugx.org/moc/varnish/downloads)](https://packagist.org/packages/aertmann/brute-force)
+[![Latest Stable Version](https://poser.pugx.org/aertmann/brute-force/v/stable)](https://packagist.org/packages/aertmann/brute-force)
+[![Total Downloads](https://poser.pugx.org/aertmann/brute-force/downloads)](https://packagist.org/packages/aertmann/brute-force)
 [![License](https://poser.pugx.org/aertmann/brute-force/license)](https://packagist.org/packages/aertmann/brute-force)
 
 ## Introduction
@@ -21,4 +21,4 @@ Be aware that there are ways to circumvent this protection and it can be misused
 
 ## Configuration
 
-Failed attempts threshold and notification mail can be configured using [``Settings.yaml``](Configuration/Settings.yaml).
+Failed attempts threshold and notification mail can be configured in [``Settings.yaml``](Configuration/Settings.yaml).
