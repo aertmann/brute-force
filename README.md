@@ -13,7 +13,11 @@ A notification email can be send to an administrator when an account has been lo
 
 Compatible with Neos 2.x + / Flow 3.x+
 
-Be aware that there are ways to circumvent this protection and it can be misused, see [Blocking Brute Force Attacks](https://www.owasp.org/index.php/Blocking_Brute_Force_Attacks) for more information.
+Be aware that there are ways to circumvent this protection and it can be misused,
+see [Blocking Brute Force Attacks](https://www.owasp.org/index.php/Blocking_Brute_Force_Attacks) for more information.
+
+Note that the threshold is disabled in development context by default. To override it, create a ``Settings.yaml``
+configuration file inside a ``Development`` folder inside a ``Configuration`` folder.
 
 ## Installation
 
