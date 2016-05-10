@@ -32,14 +32,20 @@ class AccountAspect {
     /**
      * @Flow\AfterReturning("method(TYPO3\Flow\Security\Account->authenticationAttempted())")
      * @param JoinPointInterface $joinPoint
+     * @return void
      */
     public function bruteForceAccountLocking(JoinPointInterface $joinPoint)
     {
+        $failedAttemptsThreshold = intval($this->settings['failedAttemptsThreshold']);
+        if ($failedAttemptsThreshold === 0) {
+            return;
+        }
+
         /** @var \TYPO3\Flow\Security\Account $account */
         $account = $joinPoint->getProxy();
 
         // Deactivate account if failed attempts exceed threshold
-        if ($account->getFailedAuthenticationCount() >= intval($this->settings['failedAttemptsThreshold'])) {
+        if ($account->getFailedAuthenticationCount() >= $failedAttemptsThreshold) {
             $account->setExpirationDate(new \DateTime());
             $this->sendNotificationMail($account);
         }
