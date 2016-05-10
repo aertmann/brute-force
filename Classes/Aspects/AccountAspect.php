@@ -75,7 +75,7 @@ class AccountAspect {
         $mail = new Message();
         $mail
             ->setFrom(
-                $notificationMailSettings['from']['email'],
+                $replacePlaceholders($notificationMailSettings['from']['email']),
                 $replacePlaceholders($notificationMailSettings['from']['name'])
             )
             ->setTo($notificationMailSettings['to'])
