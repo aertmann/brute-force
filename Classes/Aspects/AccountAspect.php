@@ -30,6 +30,8 @@ class AccountAspect {
     }
 
     /**
+     * Do the check if an account should be blocked because of brute force attempt
+     *
      * @Flow\AfterReturning("method(TYPO3\Flow\Security\Account->authenticationAttempted())")
      * @param JoinPointInterface $joinPoint
      * @return void
@@ -52,6 +54,8 @@ class AccountAspect {
     }
 
     /**
+     * Send the notification mail
+     *
      * @param Account $account
      * @return void
      */
