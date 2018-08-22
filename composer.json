@@ -1,6 +1,6 @@
 {
 	"name": "aertmann/brute-force",
-	"type": "typo3-flow-package",
+	"type": "neos-package",
 	"license": "MIT",
 	"description": "Simple brute-force prevention (account locking) for Flow",
 	"keywords": [ "brute-force", "security", "neos", "flow" ],
@@ -11,8 +11,8 @@
 		}
 	],
 	"require": {
-		"typo3/flow": "~3.0",
-		"typo3/swiftmailer": "~5.0"
+		"neos/flow": ">4.0",
+		"neos/swiftmailer": ">6.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -21,7 +21,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.0.x-dev"
+			"dev-master": "2.0.x-dev"
 		}
 	}
 }

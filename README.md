@@ -11,7 +11,7 @@ This package provides simple brute-force prevention (account locking) for Neos/F
 
 A notification email can be send to an administrator when an account has been locked.
 
-Compatible with Neos 2.x + / Flow 3.x+
+Compatible with Neos 3.x + 4.x / Flow 4.x + 5.x
 
 Be aware that there are ways to circumvent this protection and it can be misused,
 see [Blocking Brute Force Attacks](https://www.owasp.org/index.php/Blocking_Brute_Force_Attacks) for more information.
@@ -21,7 +21,7 @@ configuration file inside a ``Development`` folder inside a ``Configuration`` fo
 
 ## Installation
 
-`composer require "aertmann/brute-foce:~1.0"`
+`composer require "aertmann/brute-force:~2.0"`
 
 ## Configuration
 

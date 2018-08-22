@@ -1,11 +1,11 @@
 <?php
 namespace AE\BruteForce\Aspects;
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Aop\JoinPointInterface;
-use TYPO3\Flow\Http\Request;
-use TYPO3\Flow\Security\Account;
-use TYPO3\SwiftMailer\Message;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Aop\JoinPointInterface;
+use Neos\Flow\Http\Request;
+use Neos\Flow\Security\Account;
+use Neos\SwiftMailer\Message;
 
 /**
  * Advice the Account to deactivate if failed attempts threshold is exceeded
@@ -30,7 +30,7 @@ class AccountAspect {
     }
 
     /**
-     * @Flow\AfterReturning("method(TYPO3\Flow\Security\Account->authenticationAttempted())")
+     * @Flow\AfterReturning("method(Neos\Flow\Security\Account->authenticationAttempted())")
      * @param JoinPointInterface $joinPoint
      * @return void
      */
@@ -41,7 +41,7 @@ class AccountAspect {
             return;
         }
 
-        /** @var \TYPO3\Flow\Security\Account $account */
+        /** @var \Neos\Flow\Security\Account $account */
         $account = $joinPoint->getProxy();
 
         // Deactivate account if failed attempts exceed threshold
