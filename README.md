@@ -11,7 +11,7 @@ This package provides simple brute-force prevention (account locking) for Neos/F
 
 A notification email can be send to an administrator when an account has been locked.
 
-Compatible with Neos 3.x + 4.x / Flow 4.x + 5.x
+Compatible with Neos 3.x or later / Flow 4.x or later (tested until 7.3)
 
 Be aware that there are ways to circumvent this protection and it can be misused,
 see [Blocking Brute Force Attacks](https://www.owasp.org/index.php/Blocking_Brute_Force_Attacks) for more information.

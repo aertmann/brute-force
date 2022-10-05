@@ -1,9 +1,11 @@
 <?php
+
 namespace AE\BruteForce\Aspects;
 
+use GuzzleHttp\Psr7\ServerRequest;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Aop\JoinPointInterface;
-use Neos\Flow\Http\Request;
+use Neos\Flow\Http\ServerRequestAttributes;
 use Neos\Flow\Security\Account;
 use Neos\SwiftMailer\Message;
 
@@ -13,21 +15,14 @@ use Neos\SwiftMailer\Message;
  * @Flow\Aspect
  * @Flow\Scope("singleton")
  */
-class AccountAspect {
+class AccountAspect
+{
 
     /**
+     * @Flow\InjectConfiguration(package="AE.BruteForce")
      * @var array
      */
     protected $settings;
-
-    /**
-     * @param array $settings
-     * @return void
-     */
-    public function injectSettings(array $settings)
-    {
-        $this->settings = $settings;
-    }
 
     /**
      * @Flow\AfterReturning("method(Neos\Flow\Security\Account->authenticationAttempted())")
@@ -61,16 +56,18 @@ class AccountAspect {
         if (!$notificationMailSettings['to']) {
             return;
         }
-        $httpRequest = Request::createFromEnvironment();
+
+        $httpRequest = ServerRequest::fromGlobals();
+
         $failedAttemptsThreshold = $this->settings['failedAttemptsThreshold'];
         $time = (new \DateTime())->format('Y-m-d H:i');
 
-        $replacePlaceholders = function($string) use ($account, $httpRequest, $failedAttemptsThreshold, $time) {
+        $replacePlaceholders = function ($string) use ($account, $httpRequest, $failedAttemptsThreshold, $time) {
             return str_replace([
                 '{domain}', '{ip}', '{userAgent}', '{accountIdentifier}', '{failedAttemptsThreshold}', '{time}'
             ], [
                 $httpRequest->getUri()->getHost(),
-                $httpRequest->getClientIpAddress(),
+                $httpRequest->getAttribute(ServerRequestAttributes::CLIENT_IP),
                 $_SERVER['HTTP_USER_AGENT'],
                 $account->getAccountIdentifier(),
                 $failedAttemptsThreshold,
@@ -89,5 +86,4 @@ class AccountAspect {
             ->setBody($replacePlaceholders($notificationMailSettings['message']))
             ->send();
     }
-
 }
