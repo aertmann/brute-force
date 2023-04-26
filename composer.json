@@ -11,7 +11,7 @@
 		}
 	],
 	"require": {
-		"neos/flow": ">4.0",
+		"neos/flow": ">=6.0",
 		"neos/swiftmailer": ">6.0"
 	},
 	"autoload": {
